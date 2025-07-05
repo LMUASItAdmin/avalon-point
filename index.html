@@ -41,11 +41,6 @@
         <script src="js/leaflet-measure.js"></script>
         <script src="data/AvalonPointeFlightArea_1.js"></script>
         <script>
-        var highlightLayer;
-        function highlightFeature(e) {
-            highlightLayer = e.target;
-            highlightLayer.openPopup();
-        }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
         }).fitBounds([[32.98934592031439,-80.0424385916877],[33.00069954985209,-80.02722062438568]]);
@@ -111,18 +106,6 @@
         layer_OpenStreetMap_0;
         map.addLayer(layer_OpenStreetMap_0);
         function pop_AvalonPointeFlightArea_1(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Name</th>\
@@ -144,12 +127,14 @@
             return {
                 pane: 'pane_AvalonPointeFlightArea_1',
                 opacity: 1,
-                color: 'rgba(53,121,177,1.0)',
+                color: 'rgba(38,89,128,1.0)',
                 dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 4.0,
-                fillOpacity: 0,
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(55,126,184,1.0)',
                 interactive: true,
             }
         }
